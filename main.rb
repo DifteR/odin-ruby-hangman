@@ -3,6 +3,7 @@ class Hangman
   attr_accessor :guess
   
   def initialize
+    @alreadyGuessed = Array.new()
     @correctWord = File.readlines("lib/google-10000-english-no-swears.txt").sample
     @guess = Array.new(correctWord.length)
   end
@@ -12,6 +13,7 @@ class Hangman
     while i < correctWord.length
       if correctWord[i] == a
         guess[i] = a
+      else alreadyGuessed << a
       end
       i += 1
     end
