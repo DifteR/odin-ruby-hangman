@@ -1,11 +1,17 @@
 class Hangman
   attr_reader :correctWord
-  attr_accessor :guess
+  attr_accessor :guess, :turn
   
   def initialize
     @alreadyGuessed = Array.new()
     @correctWord = File.readlines("lib/google-10000-english-no-swears.txt").sample
     @guess = Array.new(correctWord.length)
+    @turn = 0
+  end
+
+  def self.generateRandomWord
+    words = File.readlines("lib/google-10000-english-no-swears.txt").map(&:chomp)
+    return words.select { |word| word.length >= 5 && word.length <= 12 }.sample
   end
 
   def checkMatchingLetters(a) #could rewrite using enumrables
@@ -82,3 +88,4 @@ class Hangman
 end
 
 game = Hangman.new()
+puts game.correctWord
