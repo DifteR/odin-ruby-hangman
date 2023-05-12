@@ -4,12 +4,12 @@ class Hangman
   
   def initialize
     @alreadyGuessed = Array.new()
-    @correctWord = File.readlines("lib/google-10000-english-no-swears.txt").sample
+    @correctWord = self.generateRandomWord
     @guess = Array.new(correctWord.length)
     @turn = 0
   end
 
-  def self.generateRandomWord
+  def generateRandomWord
     words = File.readlines("lib/google-10000-english-no-swears.txt").map(&:chomp)
     return words.select { |word| word.length >= 5 && word.length <= 12 }.sample
   end
