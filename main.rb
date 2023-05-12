@@ -11,6 +11,8 @@ class Hangman
         while i < correctWord.length
             if correctWord[i] == a
                 guess[i] = a
+            end
+            i += 1
         end
     end
 end
