@@ -26,9 +26,9 @@ class Hangman
   end
 
   def displayGuessed
-    self.guess.each do |character|
+    self.guess.each do |characher|
       if characher != nil
-        print character
+        print characher
       else print "_"
       end
     end
@@ -98,3 +98,4 @@ end
 
 game = Hangman.new()
 puts game.correctWord
+game.displayGuessed
