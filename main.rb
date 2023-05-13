@@ -7,7 +7,7 @@ class Hangman
     @correctWord = self.generateRandomWord
     @guess = Array.new(correctWord.length)
     @turn = 0
-    @wrongGUesses = 0
+    @wrongGuesses = 0
   end
 
   def generateRandomWord
@@ -21,6 +21,7 @@ class Hangman
       if correctWord[i] == a
         guess[i] = a
       else alreadyGuessed << a
+        wrongGuesses += 1
       end
       i += 1
     end
@@ -35,8 +36,8 @@ class Hangman
     end
   end
 
-  def draw_hangman(guesses)
-    case guesses
+  def draw_hangman()
+    case wrongGuesses
     when 0
       puts " _________"
       puts "|         |"
