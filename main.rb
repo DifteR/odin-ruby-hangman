@@ -7,6 +7,7 @@ class Hangman
     @correctWord = self.generateRandomWord
     @guess = Array.new(correctWord.length)
     @turn = 0
+    @wrongGUesses = 0
   end
 
   def generateRandomWord
