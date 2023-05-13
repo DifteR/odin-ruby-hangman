@@ -25,6 +25,15 @@ class Hangman
     end
   end
 
+  def displayGuessed
+    self.guess.each do |character|
+      if characher != nil
+        print character
+      else print "_"
+      end
+    end
+  end
+
   def draw_hangman(guesses)
     case guesses
     when 0
