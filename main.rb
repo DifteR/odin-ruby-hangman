@@ -1,7 +1,7 @@
 class Hangman
-  attr_reader :correctWord
+  attr_reader :correctWord, :wrongGuesses
   attr_accessor :guess, :turn
-  
+
   def initialize
     @alreadyGuessed = Array.new()
     @correctWord = self.generateRandomWord
@@ -17,14 +17,21 @@ class Hangman
 
   def checkMatchingLetters(a) #could rewrite using enumrables
     i = 0
+    wasGuessed = false;
     while i < correctWord.length
+      puts correctWord[i]
+      puts a
+      puts correctWord[i] == a
       if correctWord[i] == a
         guess[i] = a
-      else alreadyGuessed << a
-        wrongGuesses += 1
+        wasGuessed = true;
       end
       i += 1
     end
+    if wasGuessed == false
+      @wrongGuesses += 1
+    end
+    self.draw_hangman
   end
 
   def displayGuessed
@@ -33,6 +40,13 @@ class Hangman
         print characher
       else print "_"
       end
+    end
+  end
+
+  def saveToFile()
+    serialisedObject = Marshal.dump(self)
+    File.open("/lib/savegame.dat", "wb") do |file|
+      file.write(serialisedObject)
     end
   end
 
@@ -100,4 +114,7 @@ end
 
 game = Hangman.new()
 puts game.correctWord
-game.displayGuessed
+i = 0
+while(game.wrongGuesses < 6)
+  game.checkMatchingLetters(gets.chomp)
+end
