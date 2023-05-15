@@ -115,6 +115,15 @@ end
 game = Hangman.new()
 puts game.correctWord
 i = 0
+userInput = ""
 while(game.wrongGuesses < 6)
-  game.checkMatchingLetters(gets.chomp)
+  puts "Enter your guess(a single character) or 'save' to save the game"
+  userInput = gets.chomp
+  if userInput == "save"
+    game.saveToFile
+  elsif userInput.match?(/[a-z]/)
+    game.checkMatchingLetters(userInput)
+  else
+    puts "Wrong input"
+  end
 end
