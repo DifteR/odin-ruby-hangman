@@ -3,11 +3,12 @@ class Hangman
   attr_accessor :guess, :turn
 
   def initialize
-    #@alreadyGuessed = Array.new()
+    @alreadyGuessed = Array.new()
     @correctWord = self.generateRandomWord
     @guess = Array.new(correctWord.length)
     @turn = 0
     @wrongGuesses = 0
+    @listOfWrongGuesses = Array.new()
   end
 
   def generateRandomWord
@@ -60,6 +61,13 @@ class Hangman
 
   def checkWinner()
     return @correctWord == @guess.compact.join
+  end
+
+  def userAlreadyGuessed(a)
+    if @listOfWrongGuesses.include?(a)
+      return true
+    else return false
+    end
   end
 
   def draw_hangman()
