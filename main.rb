@@ -144,7 +144,7 @@ if userInput == "load"
     game = Hangman.new()
 end
 puts game.correctWord
-while(game.wrongGuesses < 6)
+while(game.wrongGuesses < 6 && !game.checkWinner)
   puts "Enter your guess(a single character) or 'save' to save the game"
   userInput = gets.chomp
   if userInput == "save"
@@ -161,5 +161,11 @@ while(game.wrongGuesses < 6)
   else
     puts "Wrong input"
   end
+end
+
+if game.checkWinner
+  puts "You won!"
+elsif game.wrongGuesses > 5
+  "You lost, try again"
 end
 
